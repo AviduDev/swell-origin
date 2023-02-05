@@ -1,36 +1,42 @@
 <template>
-  <div v-if="sections.length">
-    <transition-group name="page-section">
-      <div
-        v-for="(section, index) in sections"
-        :key="`${index}.${section.type}`"
-      >
-        <SectionAsyncLoader
-          v-if="section"
-          :section="section"
-          :collection-index="index"
-          :fetch-is-pending="!loaded && $fetchState.pending"
-        />
+  <main>
+    <section class="hero">
+      <h1>Hi im avidu</h1>
+      <div v-if="sections.length">
+        <transition-group name="page-section">
+          <div
+            v-for="(section, index) in sections"
+            :key="`${index}.${section.type}`"
+          >
+            <SectionAsyncLoader
+              v-if="section"
+              :section="section"
+              :collection-index="index"
+              :fetch-is-pending="!loaded && $fetchState.pending"
+            />
+          </div>
+        </transition-group>
       </div>
-    </transition-group>
-  </div>
-
-  <div
-    v-else-if="$fetchState.pending"
-    class="flex flex-col items-center justify-center py-32 md:container"
-  >
-    <div class="mb-2 h-7 w-1/2 bg-primary-light" />
-    <div class="mb-6 h-7 w-1/3 bg-primary-light" />
-    <div class="mb-4 h-2 w-3/5 bg-primary-light" />
-    <div class="mb-8 h-2 w-4/5 bg-primary-light" />
-    <div class="h-10 w-40 bg-primary-light" />
-  </div>
-
-  <SectionUndefined
-    v-else
-    :heading="`${page ? page.name : 'Standard'} page`"
-    description="No sections added"
-  />
+    
+      <div
+        v-else-if="$fetchState.pending"
+        class="flex flex-col items-center justify-center py-32 md:container"
+      >
+        <div class="mb-2 h-7 w-1/2 bg-primary-light" />
+        <div class="mb-6 h-7 w-1/3 bg-primary-light" />
+        <div class="mb-4 h-2 w-3/5 bg-primary-light" />
+        <div class="mb-8 h-2 w-4/5 bg-primary-light" />
+        <div class="h-10 w-40 bg-primary-light" />
+      </div>
+    
+      <SectionUndefined
+        v-else
+        :heading="`${page ? page.name : 'Standard'} page`"
+        description="No sections added"
+      />
+    </section>
+  </main>
+  
 </template>
 
 <script>
